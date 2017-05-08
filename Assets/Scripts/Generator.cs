@@ -7,14 +7,15 @@ public class Generator : MonoBehaviour {
     [SerializeField]
     GameObject car;
 
-    [SerializeField]
-    float timer; // плотность машин
+    //[SerializeField]
+    public float timer; // плотность машин
     float time = 0;
 
     BankOfColors bankOfColors;
 
     void Start()
     {
+        time += Random.Range(0f, 1f);
         bankOfColors = GameObject.Find("GameManager").GetComponent<BankOfColors>();
     }
 
@@ -26,7 +27,7 @@ public class Generator : MonoBehaviour {
             Vector3 startPos = transform.position;
             startPos.z = car.transform.position.z;
             Instantiate(car, startPos, transform.rotation).GetComponent<SpriteRenderer>().color = bankOfColors.colors[Random.Range(0, bankOfColors.colors.Length)];
-            time = 0;
+            time = Random.Range(0f, 1f);
         }
     }
 }
